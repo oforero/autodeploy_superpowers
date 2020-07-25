@@ -103,7 +103,18 @@ jobs:
             cd frontend
             npm audit --audit-level=critical
 
-
+  create_backend_infrastructure:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Ensure backend infrastructure exist
+          command: |
+            aws cloudformation deploy \
+              --stack-name superpowers \
+              --template-file .circleci/files/backend.yml \
+              --parameters file://.circleci/files/my-parameters.yml
 workflows:
   backend:
     jobs:
@@ -114,6 +125,9 @@ workflows:
       - analyze-backend:
           requires:
             - test-backend
+      - create_backend_infrastructure:
+          requires:
+            - analyze-backend
 
   frontend:
     jobs:
@@ -124,3 +138,4 @@ workflows:
       - analyze-frontend:
           requires:
             - test-frontend
+
