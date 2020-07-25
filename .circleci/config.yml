@@ -28,10 +28,26 @@ jobs:
             cd backend
             npm install
       - run:
-          name: Lint
+          name: Test
           command: |
             cd backend
             npm run test
+
+  analyze-backend:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run:
+          name: Install
+          command: |
+            cd backend
+            npm install
+      - run:
+          name: Analyze
+          command: |
+            cd backend
+            npm audit --audit-level=critical
 
   lint-frontend:
     docker:
