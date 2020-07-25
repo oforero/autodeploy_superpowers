@@ -1,9 +1,15 @@
 version: 2.1
 
+parameters:
+  build-image:
+    type: string
+    default: "circleci/node:14.5.0"
+
+
 jobs:
   lint-backend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: << pipeline.parameters.build-image >>
     steps:
       - checkout
       - run:
@@ -21,7 +27,7 @@ jobs:
 
   test-backend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: << pipeline.parameters.build-image >>
     steps:
       - checkout
       - run:
@@ -37,7 +43,7 @@ jobs:
 
   analyze-backend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: << pipeline.parameters.build-image >>
     steps:
       - checkout
       - run:
@@ -53,7 +59,7 @@ jobs:
 
   lint-frontend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: << pipeline.parameters.build-image >>
     steps:
       - checkout
       - run:
@@ -69,7 +75,7 @@ jobs:
 
   test-frontend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: << pipeline.parameters.build-image >>
     steps:
       - checkout
       - run:
@@ -85,7 +91,7 @@ jobs:
 
   analyze-frontend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: << pipeline.parameters.build-image >>
     steps:
       - checkout
       - run:
