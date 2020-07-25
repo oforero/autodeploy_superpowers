@@ -22,7 +22,7 @@ jobs:
           command: |
             cd backend
             npm run build
-            ls
+            ls -al dist
 
   test-backend:
     docker:
