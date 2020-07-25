@@ -1,1 +1,3 @@
-GitHub: https://github.com/oforero/cdond-c3-projectstarter
+GitHub: https://github.com/oforero/autodeploy_superpowers
+Circle CI: https://app.circleci.com/pipelines/github/oforero/autodeploy_superpowers
+
