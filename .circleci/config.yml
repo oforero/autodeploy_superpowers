@@ -1,16 +1,6 @@
 version: 2.1
 
 jobs:
-  hello-world:
-    docker:
-      - image: amazon/aws-cli
-    steps:
-      - checkout
-      - run:
-          name: Say Hello
-          command: |
-            echo "Hello World"
-
   lint-backend:
     docker:
       - image: circleci/node:13.8.0
@@ -61,11 +51,13 @@ jobs:
 
 
 workflows:
-  build:
+  backend:
     jobs:
       - lint-backend
       - test-backend:
           requires:
             - lint-backend
 
+  frontend:
+    jobs:
       - lint-frontend
