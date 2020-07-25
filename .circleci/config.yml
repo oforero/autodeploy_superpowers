@@ -114,6 +114,7 @@ jobs:
             aws cloudformation deploy \
               --stack-name superpowers \
               --template-file .circleci/files/backend.yml \
+              --region us-west-2 \
               --parameter-overrides "ID=1"
 workflows:
   backend:
