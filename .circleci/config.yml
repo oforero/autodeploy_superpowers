@@ -27,6 +27,22 @@ jobs:
             cd backend
             npm run build
 
+  test-backend:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run:
+          name: Install
+          command: |
+            cd backend
+            npm install
+      - run:
+          name: Lint
+          command: |
+            cd backend
+            npm run test
+
   lint-frontend:
     docker:
       - image: circleci/node:13.8.0
@@ -45,7 +61,11 @@ jobs:
 
 
 workflows:
-  default:
+  build:
     jobs:
       - lint-backend
+      - test-backend:
+          requires:
+            - lint-backend
+
       - lint-frontend
