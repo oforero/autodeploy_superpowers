@@ -22,7 +22,6 @@ jobs:
           command: |
             cd backend
             npm run build
-            ls -al dist
 
   test-backend:
     docker:
