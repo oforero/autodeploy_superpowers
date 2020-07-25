@@ -114,7 +114,7 @@ jobs:
             aws cloudformation deploy \
               --stack-name superpowers \
               --template-file .circleci/files/backend.yml \
-              --parameters file://.circleci/files/my-parameters.yml
+              --parameter-overrides "ID=1"
 workflows:
   backend:
     jobs:
