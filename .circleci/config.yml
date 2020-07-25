@@ -12,6 +12,7 @@ jobs:
             cd backend
             npm install
             npm --version
+            node --version
       - run:
           name: Lint
           command: |
