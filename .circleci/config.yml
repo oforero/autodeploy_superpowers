@@ -17,14 +17,12 @@ jobs:
           command: |
             cd backend
             npm install
-            npm --version
-            node --version
       - run:
           name: Lint
           command: |
             cd backend
-            ls
             npm run build
+            ls
 
   test-backend:
     docker:
