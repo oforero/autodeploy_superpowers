@@ -23,6 +23,7 @@ jobs:
           name: Lint
           command: |
             cd backend
+            ls
             npm run build
 
   test-backend:
