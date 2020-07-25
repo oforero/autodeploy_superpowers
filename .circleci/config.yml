@@ -7,7 +7,7 @@ parameters:
 
 
 jobs:
-  lint-backend:
+  build-backend:
     docker:
       - image: << pipeline.parameters.build-image >>
     steps:
@@ -18,7 +18,7 @@ jobs:
             cd backend
             npm install
       - run:
-          name: Lint
+          name: Build
           command: |
             cd backend
             npm run build
@@ -55,7 +55,7 @@ jobs:
             cd backend
             npm audit --audit-level=critical
 
-  lint-frontend:
+  build-frontend:
     docker:
       - image: << pipeline.parameters.build-image >>
     steps:
@@ -66,7 +66,7 @@ jobs:
             cd frontend
             npm install
       - run:
-          name: Lint
+          name: Build
           command: |
             cd frontend
             npm run build
@@ -107,20 +107,20 @@ jobs:
 workflows:
   backend:
     jobs:
-      - lint-backend
+      - build-backend
       - test-backend:
           requires:
-            - lint-backend
+            - build-backend
       - analyze-backend:
           requires:
             - test-backend
 
   frontend:
     jobs:
-      - lint-frontend
+      - build-frontend
       - test-frontend:
           requires:
-            - lint-frontend
+            - build-frontend
       - analyze-frontend:
           requires:
             - test-frontend
