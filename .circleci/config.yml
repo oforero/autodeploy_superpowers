@@ -133,6 +133,9 @@ jobs:
               --template-file .circleci/files/frontend.yml \
               --region us-west-2 \
               --parameter-overrides "ID=1"
+            ARN=$(aws cloudformation list-exports --region us-west-2 --query "Exports[0].Value" --output text)
+            echo "ARN=$ARN"
+            curl -H "Content-Type: text/plain" -H "token: bade66f6-b826-4e77-9310-dfeddbd3aaed" --request PUT --data "$ARN" https://api.memstash.io/values/arn
 
 
 workflows:
