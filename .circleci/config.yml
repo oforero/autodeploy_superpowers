@@ -126,7 +126,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Create Backend Infrastructure
+          name: Create Frontend Infrastructure
           command: |
             aws cloudformation deploy \
               --stack-name superpowers \
